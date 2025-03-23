@@ -19,7 +19,7 @@ const Manager = () => {
         console.log(data)
         if (data) {
             setinf(data);  // Set passwords to state
-        }else{
+        } else {
             console.log("No data found")
         }
     }
@@ -27,6 +27,13 @@ const Manager = () => {
 
     useEffect(() => {
         getpasswords()
+        toast.warning("Note: This is a demo website, Don't Enter your Personal Details", {
+            position: "bottom-right",
+            containerId:"note",
+            autoClose: false, // 👈 Keeps the toast open indefinitely
+            closeOnClick: false, // 👈 Prevents closing on click
+            draggable: false, // 👈 Disables dragging
+        });
     }, []);
 
     const { register, handleSubmit, reset, setValue, formState: { errors }
@@ -70,6 +77,7 @@ const Manager = () => {
             reset();
             toast.success('Password saved successfully', {
                 position: "top-right",
+                containerId:"actions",
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: false,
@@ -77,6 +85,7 @@ const Manager = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "dark",
+
             });
         }
     };
@@ -88,7 +97,7 @@ const Manager = () => {
 
                 // Find and remove the item with a matching index
                 const updatedInfo = inf.filter((item) => item.index != e.target.id);
-                const item=inf.find((item) => item.index == e.target.id);
+                const item = inf.find((item) => item.index == e.target.id);
                 console.log(item)
 
                 // Update localStorage
@@ -102,9 +111,10 @@ const Manager = () => {
                     body: JSON.stringify(item),
 
                 }).then(res => res.json())
-                .then(data => console.log(data))
+                    .then(data => console.log(data))
                 toast.success('Deleted successfully', {
                     position: "top-right",
+                    containerId:"actions",
                     autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: false,
@@ -117,8 +127,8 @@ const Manager = () => {
         } else {
             // Find and remove the item with a matching index
             const updatedInfo = inf.filter((item) => item.index != e.target.id);
-            const item=inf.find((item) => item.index == e.target.id);
-            
+            const item = inf.find((item) => item.index == e.target.id);
+
 
             // Update localStorage
             // localStorage.setItem("passwords", JSON.stringify(updatedInfo));
@@ -130,7 +140,7 @@ const Manager = () => {
                 body: JSON.stringify(item),
 
             }).then(res => res.json())
-            .then(data => console.log(data))
+                .then(data => console.log(data))
             setinf(updatedInfo);
 
         }
@@ -139,7 +149,7 @@ const Manager = () => {
 
     const handleedit = (e) => {
         // const info = JSON.parse(localStorage.getItem("passwords")) || [];
-        console.log(e.target.id,inf)
+        console.log(e.target.id, inf)
         const itemToEdit = inf.find((item) => item.index == e.target.id);
         console.log(itemToEdit)
 
@@ -158,6 +168,7 @@ const Manager = () => {
         toast.success('Copied to Clipboard', {
             position: "top-right",
             autoClose: 2000,
+            containerId:"actions",
             hideProgressBar: false,
             closeOnClick: false,
             pauseOnHover: true,
@@ -174,13 +185,29 @@ const Manager = () => {
                 autoClose={2000}
                 hideProgressBar={false}
                 newestOnTop={false}
-                closeOnClick={false}
+                closeOnClick={true}
                 rtl={false}
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
                 theme="dark"
+                containerId={"actions"}
             />
+
+            <ToastContainer
+                position="bottom-right"
+                autoClose={false} // 👈 Keeps the toast open indefinitely
+                hideProgressBar={false}
+                newestOnTop={true} // 👈 Displays newest toasts on top
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss={false} // 👈 Toast stays even when tab is inactive
+                draggable={false} // 👈 Disables dragging
+                pauseOnHover={true}
+                theme="dark"
+                containerId={"note"}
+            />
+
 
             <div className="absolute inset-0 -z-10 h-full w-full bg-green-50 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"><div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-green-400 opacity-20 blur-[100px]"></div></div>
 
