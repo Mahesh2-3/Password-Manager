@@ -35,10 +35,10 @@ const Manager = () => {
 
     const Pass = () => {
         if (ref.current.src.includes("eye.svg")) {
-            ref.current.src = "assets/eyecross.svg"
+            ref.current.src = "/eyecross.svg"
 
         } else {
-            ref.current.src = "assets/eye.svg"
+            ref.current.src = "/eye.svg"
         }
         setpassvisible(!passvisible)
     }
@@ -195,7 +195,7 @@ const Manager = () => {
                         <div className='relative  flex sm:flex-row flex-col  justify-between gap-4 '>
                             <input {...register("username")} ref={(e) => { register("username").ref(e); userinput.current = e; }} className='h-[35px] w-100% sm:w-[63%] border border-[#bcffbc] outline-none focus:border-[#225322] rounded-full pl-3 bg-[#f9fff9]' type="text" placeholder='Enter UserName' />
                             <input {...register("password")} ref={(e) => { register("password").ref(e); passinput.current = e; }} className='h-[35px] border w-100% sm:w-[35%] border-[#bcffbc] outline-none focus:border-[#225322] rounded-full pl-3 bg-[#f9fff9]' type={passvisible ? "text" : "password"} placeholder='Enter Password' />
-                            <img ref={ref} onClick={Pass} className='cursor-pointer absolute sm:right-2 sm:top-1 right-[7px] top-[54px] w-[25px] h-[25px] ' src="assets/eyecross.svg" alt="" />
+                            <img ref={ref} onClick={Pass} className='cursor-pointer absolute sm:right-2 sm:top-1 right-[7px] top-[54px] w-[25px] h-[25px] ' src="/eyecross.svg" alt="" />
 
                         </div>
                         <button type="submit" className='px-3 my-3 max-w-[100px] m-auto font-semibold text-base flex items-center gap-2 bg-green-300 p-[6px] rounded-full border border-1'>
@@ -229,8 +229,8 @@ const Manager = () => {
                                                     {item.site}
                                                 </a>
                                             </div>
-                                            <div className="w-[20%] sm:w-[16%]  border-r border-green-900 h-full  cursor-pointer text-sm flex justify-center items-center gap-1 text-center ">root<span><img src="assets/copy.svg" onClick={() => { handlecopy(item.username) }} alt="" /></span></div>
-                                            <div className="w-[20%] sm:w-[16%]  border-r border-green-900 h-full  cursor-pointer text-sm flex justify-center items-center gap-1 text-center ">admin <span><img src="assets/copy.svg" onClick={() => { handlecopy(item.password) }} alt="" /></span></div>
+                                            <div className="w-[20%] sm:w-[16%]  border-r border-green-900 h-full  cursor-pointer text-sm flex justify-center items-center gap-1 text-center ">root<span><img src="/copy.svg" onClick={() => { handlecopy(item.username) }} alt="" /></span></div>
+                                            <div className="w-[20%] sm:w-[16%]  border-r border-green-900 h-full  cursor-pointer text-sm flex justify-center items-center gap-1 text-center ">admin <span><img src="/copy.svg" onClick={() => { handlecopy(item.password) }} alt="" /></span></div>
                                             <div className="w-[20%] sm:w-[16%]  flex justify-center items-center  text-sm text-center ">
                                                 <span className='lg:scale-[0.85] sm:ml-2 ml-[3px] scale-75  cursor-pointer'><lord-icon src="https://cdn.lordicon.com/exymduqj.json" trigger="hover" id={item.index} onClick={handleedit}></lord-icon></span>
                                                 <span className='lg:scale-[0.85] sm:ml-2 ml-[3px] scale-75  cursor-pointer'><lord-icon src="https://cdn.lordicon.com/hwjcdycb.json" trigger="hover" id={item.index} onClick={handledelete}></lord-icon></span>
